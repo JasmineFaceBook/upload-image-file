@@ -7,7 +7,7 @@
 	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.2.xsd
-	 http://www.springframework.org/schema/aop 
+	 http://www.springframework.org/schema/aop
 	 http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
@@ -16,13 +16,13 @@
 	<mvc:annotation-driven />
 	<!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean -->
 	<!-- 开启controller注解支持 -->
-	<context:component-scan base-package="com.yyx.wx.**.controller">
+	<context:component-scan base-package="com.jasmine.wx.**.controller">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
-	<aop:aspectj-autoproxy/> 
-	<aop:aspectj-autoproxy proxy-target-class="true" />   
+	<aop:aspectj-autoproxy/>
+	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<!-- <aop:config proxy-target-class="true"></aop:config> -->
 
 
@@ -44,30 +44,8 @@
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
 		p:defaultEncoding="utf-8"
-		p:maxUploadSize="104857600"  
-        p:uploadTempDir="fileUpload/temp" 
-		 />
-
-    <!-- <bean id="defaultcontroller" class="com.yyx.zbhr.controller.DefaultController" />
-    <bean id="defaulturlmapping"
-          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="order" value="2147483645" />此处的order很重要，要低于 mvc:resources的默认值2147483646
-        <property name="mappings">
-            <props>
-                <prop key="/*/**">defaultcontroller</prop>
-            </props>
-        </property>
-    </bean>  -->
-	<!-- 自动解析action返回值 解析成json格式 -->
-	 <!-- <bean id="mappingJacksonHttpMessageConverter"
-		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<list>
-				<value>text/html;charset=utf-8</value>
-				<value>text/plain;charset=utf-8</value>
-			</list>
-		</property>
-	</bean>  -->
+		p:maxUploadSize="104857600"
+        p:uploadTempDir="fileUpload/temp"/>
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
 			<bean

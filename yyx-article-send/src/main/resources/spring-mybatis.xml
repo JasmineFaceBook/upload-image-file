@@ -29,15 +29,15 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="myBatisDataSource" />
 		<!-- <property name="configLocation" value="classpath:mybatis-configuration.xml" /> -->
-		<property name="mapperLocations" value="classpath:com/yyx/wx/mapper/*Mapper.xml"></property>
-         <property name="typeAliasesPackage" value="com.yyx.wx.entity"></property>
+		<property name="mapperLocations" value="classpath:com/jasmine/wx/mapper/*Mapper.xml"></property>
+         <property name="typeAliasesPackage" value="com.jasmine.wx.entity"></property>
 		<!-- <property name="transactionFactory">
 			<bean
 				class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
 		</property>-->
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.yyx.wx.**.mapper" />
+		<property name="basePackage" value="com.jasmine.wx.**.mapper" />
 		<!-- <property name="sqlSessionFactory" ref="sqlSessionFactory"></property> -->
 	</bean>
 
@@ -70,7 +70,7 @@
 
 	<aop:config>
 		<aop:pointcut id="pc"
-			expression="execution(* com.yyx.wx..service..*.*(..)))" />
+			expression="execution(* com.jasmine.wx..service..*.*(..)))" />
 		<aop:advisor pointcut-ref="pc" advice-ref="userTxAdvice" />
 	</aop:config>
 </beans>

@@ -21,21 +21,21 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- mybatis 配置 -->
 
 	<import resource="spring-mybatis.xml" />
 
 	<!-- 自动扫描 -->
-	<context:component-scan base-package="com.yyx.wx">
+	<context:component-scan base-package="com.jasmine.wx">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	
-    <bean id="applicationContextUtil" class="com.yyx.wx.utils.ApplicationContextUtil" />
-	
+
+    <bean id="applicationContextUtil" class="com.jasmine.wx.utils.ApplicationContextUtil" />
+
 	<task:annotation-driven/>
-	
-	
-	
+
+
+
 </beans>
