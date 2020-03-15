@@ -21,15 +21,24 @@
     person.update_time as person_update_time,article.article_id as articleId
   </sql>
 	<select id="selectByPrimaryKey" resultType="com.jasmine.wx.entity.PersonInfoEntity" parameterType="map">
-		select
-		person.person_id as personId, person.person_name as personName, person.city as personCity,
-		person.county as personCounty, person.school as personSchool, person.wschool as
-		personWschool,person.person_class as personClass,
-		person.phone as phone, person.state as personState, person.create_time as createTime,
-		person.update_time as updateTime,article.article_id as articleId
-		from person_info AS person LEFT JOIN article_file as article ON
-		person.person_id=article.person_id
-		where person.state=1
+		SELECT
+		person.person_id AS personId,
+		person.person_name AS personName,
+		person.city AS personCity,
+		person.county AS personCounty,
+		person.school AS personSchool,
+		person.wschool AS personWschool,
+		person.person_class AS personClass,
+		person.phone AS phone,
+		person.state AS personState,
+		person.create_time AS createTime,
+		person.update_time AS updateTime,
+		article.article_id AS articleId
+		FROM
+		person_info AS person
+		LEFT JOIN article_file AS article ON person.person_id = article.person_id
+		WHERE
+		person.state = 1
 		<if test="personName!= null and personName!=''">
 			<if test="phone != null and phone!=''">
 				AND person.person_name = #{personName,jdbcType=VARCHAR}
@@ -190,45 +199,51 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where person_id = #{personId,jdbcType=BIGINT}
   </update>
-	<select id="getCity" resultType="com.jasmine.wx.entity.PersonInfoEntity">
-  SELECT
-c.city_id as cityId,
-c.city_name as cityName
-from city as c
-  </select>
-	<select id="getCounty" resultType="com.jasmine.wx.entity.PersonInfoEntity" parameterType="map">
+	<select id="getPlace" resultType="com.jasmine.wx.entity.PersonInfoEntity" parameterType="map">
 		SELECT
-		c.city_id AS cityId,
-		c.city_name AS cityName,
-		co.county_id AS countyId,
-		co.county_name AS countyName
+		a.id AS cityId,
+		a. NAME AS cityName,
+		ao.id AS parentId,
+		ao. NAME AS parentName
 		FROM
-		city AS c
-		LEFT JOIN county AS co ON c.city_id = co.city_id
-		WHERE 1=1
-		<if test="cityId != null and cityId !=''">
-			AND c.city_id = #{cityId,jdbcType=VARCHAR}
-		</if>
-		<if test="countyId != null and countyId !=''">
-			AND co.county_id = #{countyId,jdbcType=VARCHAR}
-		</if>
+		area_tb AS a
+		LEFT JOIN area_tb AS ao ON a.pid = ao.id
+		<where>
+			<if test="cityId!= null and cityId !=''">
+				AND a.pid = #{cityId,jdbcType=VARCHAR}
+			</if>
+			<if test="areaId != null and areaId !=''">
+				AND a.id = #{areaId,jdbcType=VARCHAR}
+			</if>
+		</where>
 	</select>
+
 	<select id="getSchool" resultType="com.jasmine.wx.entity.PersonInfoEntity" parameterType="map">
 		SELECT
-		co.county_id AS countyId,
-		co.county_name AS countyName,
 		s.school_id AS schoolId,
-		s.school_name AS schoolName
+		s.school_name AS schoolName,
+		a.id AS countyId,
+		a. NAME AS countyName,
+		ao.id AS cityId,
+		ao. NAME AS cityName
 		FROM
-		county AS co
-		LEFT JOIN school AS s ON co.county_id = s.county_id
-		WHERE
-		1 = 1
-		<if test="countyId != null and countyId !=''">
-			AND co.county_id = #{countyId,jdbcType=VARCHAR}
-		</if>
-		<if test="schoolId != null and schoolId !=''">
-			AND s.school_id = #{schoolId,jdbcType=VARCHAR}
-		</if>
+		school AS s
+		LEFT JOIN area_tb AS a ON s.county_id = a.id
+		LEFT JOIN area_tb AS ao ON a.pid = ao.id
+		<where>
+			<if test="cityId!= null and cityId !=''">
+				AND a.pid = #{cityId,jdbcType=VARCHAR}
+			</if>
+			<if test="areaId != null and areaId !=''">
+				AND a.id = #{areaId,jdbcType=VARCHAR}
+			</if>
+			<if test="countyId != null and countyId !=''">
+				AND s.county_id  = #{countyId,jdbcType=VARCHAR}
+			</if>
+			<if test="schoolId != null and schoolId !=''">
+				AND s.school_id  = #{schoolId,jdbcType=VARCHAR}
+			</if>
+		</where>
 	</select>
+
 </mapper>

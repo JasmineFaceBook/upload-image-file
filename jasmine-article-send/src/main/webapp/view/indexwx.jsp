@@ -48,9 +48,9 @@
         if (!doc.addEventListener) return;
         win.addEventListener(resizeEvt, recalc, false);
         doc.addEventListener('DOMContentLoaded', recalc, false);
-    })(document, window); 
-    
-   
+    })(document, window);
+
+
 </script>
 <body>
 <div class="oWrap" id="oWrapBg"></div>
@@ -76,7 +76,7 @@
                          <option value="">请选择</option>
 							<c:forEach items="${citylist}" var="name">
 							<option value="${name.cityId }"
-							<c:if test="${name.cityId==ocity}">selected</c:if>							
+							<c:if test="${name.cityId==ocity}">selected</c:if>
 							>${name.cityName }</option>
 							</c:forEach>
                        </select>
@@ -86,7 +86,7 @@
                        <option value="">请选择</option>
 							<c:forEach items="${countylist}" var="name">
 							<option value="${name.countyId }"
-							<c:if test="${name.countyId==ocounty}">selected</c:if>							
+							<c:if test="${name.countyId==ocounty}">selected</c:if>
 							>${name.countyId }</option>
 							</c:forEach>
                       </select>
@@ -96,7 +96,7 @@
                     <option value="">===请选择===</option>
 							<c:forEach items="${schoollist}" var="name">
 							<option value="${name.schoolId }"
-							<c:if test="${name.schoolId==oschool}">selected</c:if>							
+							<c:if test="${name.schoolId==oschool}">selected</c:if>
 							>${name.schoolId }</option>
 							</c:forEach>
                     </select>
@@ -118,7 +118,7 @@
                     <div class="file file-box">
                         <span>上传图片</span>
                         <div id="enterFile">
-                        <input type="file"  name="wjs" id="wjs" multiple="multiple" value="上传图片"/>
+                        <input type="file"  name="commonsMultipartFile" id="commonsMultipartFile" multiple="multiple" value="上传图片"/>
                        </div>
                     </div>
 
@@ -157,12 +157,12 @@
 
 <script>
 $(function () {
-	/* DiskFileUpload fu = new DiskFileUpload(); 
-	// 设置最大文件尺寸，这里是10MB 
-	fu.setSizeMax(10485760); 
-	// 设置缓冲区大小，这里是4kb 
+	/* DiskFileUpload fu = new DiskFileUpload();
+	// 设置最大文件尺寸，这里是10MB
+	fu.setSizeMax(10485760);
+	// 设置缓冲区大小，这里是4kb
 	fu.setSizeThreshold(10485760);  */
-	
+
 	var startx,starty;
     var stopToch = true;
     document.addEventListener("touchstart",function(e){
@@ -203,10 +203,10 @@ $(function () {
 	            e.stopPropagation();
 	        }
 	    },false);  */
-	    
-	   
 
-	    
+
+
+
 
 
 	/* $("#is_wschool").hide(); */
@@ -228,12 +228,12 @@ $(function () {
 		$("#city").append(html);
 		}
 });
-	
+
     $("input").attr('data-role','none');
     $("#btn-sub").click(function () {
-    	
-    	/*  var file=$("#wjs")[0].files[0];//得到文件对象  
-         var totalsize=file.size;//文件 总的大小  
+
+    	/*  var file=$("#commonsMultipartFile")[0].files[0];//得到文件对象
+         var totalsize=file.size;//文件 总的大小
     	if(totalsize>2097152){
     		confirm("上传图片大小不能大于2MB!");
     	} */
@@ -268,8 +268,8 @@ $(function () {
     		confirm("电话不能为空!");
     		return false;
     	}
-    	var pattern = /^1[34578]\d{9}$/;  
-    	
+    	var pattern = /^1[34578]\d{9}$/;
+
     	if(!pattern.test(ph)){
     		confirm("手机号码格式不正确!");
     		return false;
@@ -279,8 +279,8 @@ $(function () {
     	if(fileurl.indexOf('aginSub.png')> 0){
     		confirm("上传图片不能为空!");
     		return false;
-    	} 
-    	var fp = $("#wjs");
+    	}
+    	var fp = $("#commonsMultipartFile");
     	var items = fp[0].files;
     	var fileName=".jpg";
     	 if(items[0]!=null&&items[0]!=''&&items[0]!= undefined){
@@ -288,11 +288,11 @@ $(function () {
     	}
     	/*  var sfileName=fileName.substr(fileName.lastIndexOf("/")+1).toLowerCase(); */
     	var lastName=fileName.substr(fileName.lastIndexOf(".")+1).toLowerCase();
-    	
+
     	if(fileName==null||fileName==''){
     	confirm("上传图片不能为空!");
 		return false;
-	   } 
+	   }
     	if(lastName=='bmp'||lastName=='jpg'||lastName=='jpeg'||lastName=='png'||lastName=='gif'){
     	}
     	else{
@@ -300,18 +300,18 @@ $(function () {
     		return false;
     	}
 	 var t=$("#articleType").val();
-	 
+
 	 $(".oWrap").show();
 	 $(".loading").show();
-		$.ajaxFileUpload({		 
+		$.ajaxFileUpload({
 			 url : "${ctx}/img/upload",
-			 fileElementId : 'wjs',
+			 fileElementId : 'commonsMultipartFile',
 			 type : "post",
 		     async: false,
 			 data :{
 				personName:pname,
 				city:c,
-			    county:co,		
+			    county:co,
 				school:s,
 				wschool:ws,
 				personClass:pc,
@@ -321,24 +321,22 @@ $(function () {
 			},
 			dataType:"json",
 			success : function(data) {
-				/* alert("123"); */
 				if(data.flag=='1'){
 					$("#personName").val(data.opersonName);
 					$("#personClass").val(data.opersonClass);
 					$("#phone").val(data.ophone);
-					$("#isUpdate").val(data.isUpdate);	
-					  $(".zuopin-box img").attr("src","${ctx}/static/img/aginSub.png") 	 
+					$("#isUpdate").val(data.isUpdate);
+					  $(".zuopin-box img").attr("src","${ctx}/static/img/aginSub.png")
 					 if(data.owschool != undefined ){
 						 $("#wschool").attr("type","text");
-						 $("#wschool").val(data.owschool); 
+						 $("#wschool").val(data.owschool);
 					 }
-					 
+
 					if(confirm(""+data.message)){
-						
+
 					}else{
 						WeixinJSBridge.call('closeWindow');
 					}
-					
 					$("#btn-sub").text('确认修改作品')
 				}
 				if(data.flag=='2'){
@@ -346,7 +344,7 @@ $(function () {
 					$(".zuopin-box img").attr("src","${ctx}/static/img/aginSub.png")
 					$("#btn-sub").text('再次提交作品')
                     if(confirm(""+data.message)){
-						
+
 					}else{
 						WeixinJSBridge.call('closeWindow');
 					}
@@ -355,7 +353,7 @@ $(function () {
 					$(".zuopin-box img").attr("src","${ctx}/static/img/aginSub.png")
 					$("#btn-sub").text('再次提交作品')
                     if(confirm(""+data.message)){
-						
+
 					}else{
 						WeixinJSBridge.call('closeWindow');
 					}
@@ -378,35 +376,35 @@ $(function () {
 					$(".zuopin-box img").attr("src","${ctx}/static/img/aginSub.png")
 					$("#btn-sub").text('重新提交作品');
                     if(confirm(""+data.message)){
-						
+
 					}else{
 						WeixinJSBridge.call('closeWindow');
-					}	
+					}
 				}
 				if(data.flag=='6'){
 					$(".zuopin-box img").attr("src","${ctx}/static/img/aginSub.png")
 					$("#btn-sub").text('重新提交作品');
                     if(confirm(""+data.message)){
-						
+
 					}else{
 						WeixinJSBridge.call('closeWindow');
-					}	
+					}
 				}
-				$("#wjs").bind("change", function(){
+				$("#commonsMultipartFile").bind("change", function(){
 			     	  var objUrl = getObjectURL(this.files[0]);
-			     	  if (objUrl) {		     	  
-			     	    $("#img0").attr("src", objUrl) ;  
-			     	  }  
+			     	  if (objUrl) {
+			     	    $("#img0").attr("src", objUrl) ;
+			     	  }
 			   });
-						
-				/* $("#wjs").attr("style","visibility: hidden;"); */
-				 /* $("#wjs").remove(); 
-				 $("#enterFile").append("<input type='file'  name='wjs' id='wjs' multiple='multiple' value='上传图片'/>");
+
+				/* $("#commonsMultipartFile").attr("style","visibility: hidden;"); */
+				 /* $("#commonsMultipartFile").remove();
+				 $("#enterFile").append("<input type='file'  name='commonsMultipartFile' id='commonsMultipartFile' multiple='multiple' value='上传图片'/>");
 				 */
 				/* 将file文件的值去掉
-				$("#wjs").after($("#wjs").clone().val(""));      
-				 $("#wjs").remove();  */ 
-				 		
+				$("#commonsMultipartFile").after($("#commonsMultipartFile").clone().val(""));
+				 $("#commonsMultipartFile").remove();  */
+
 				$(".loading").hide();
 			},
 			 error : function(data) {
@@ -416,14 +414,14 @@ $(function () {
 
     });
 
-    $("#wjs").change(function(){ 
-  	  
+    $("#commonsMultipartFile").change(function(){
+
       var objUrl = getObjectURL(this.files[0]);
   	  if (objUrl) {
-  	    $("#img0").attr("src", objUrl);  
-  	  }  
-  	});  
-    
+  	    $("#img0").attr("src", objUrl);
+  	  }
+  	});
+
     $(".btn-bg01").click(function () {
         $(".sucuess-msg").fadeOut();
 //        $(".sucuess-msg").addClass('back-animate').hide();
@@ -437,80 +435,80 @@ $(function () {
     $(".btn-bg02").click(function () {
     	WeixinJSBridge.call('closeWindow');
     });
-    
+
     //自动切换焦点
-   /* $(document).keydown(function(event){ 
-    if(event.keyCode==13){ 
-    	
-     } 
+   /* $(document).keydown(function(event){
+    if(event.keyCode==13){
+
+     }
    }); */
-   
-   $("#personName").keydown(function(event){ 
-      if(event.keyCode==13){    		
+
+   $("#personName").keydown(function(event){
+      if(event.keyCode==13){
 	    		$("#city").focus();
-	   	
+
 	    }
    });
-   $("#city").keydown(function(event){ 
-	      if(event.keyCode==13){ 
-		    		$("#county").focus();		
-		    	
+   $("#city").keydown(function(event){
+	      if(event.keyCode==13){
+		    		$("#county").focus();
+
 		    }
 	   });
-   $("#county").keydown(function(event){ 
-	      if(event.keyCode==13){ 
-		    		
+   $("#county").keydown(function(event){
+	      if(event.keyCode==13){
+
 		    		$("#school").focus();
-		    		
-	    			
-		    	
+
+
+
 		    }
 	   });
-   $("#school").keydown(function(event){ 
-	      if(event.keyCode==13){ 
-		    		
+   $("#school").keydown(function(event){
+	      if(event.keyCode==13){
+
 		    	if($("#school").val()=='other')	{
-		    		$("#wschool").focus();		
+		    		$("#wschool").focus();
 		    	}
 		    	else{
 		    		$("#personClass").focus();
-		    	}    		
-	    		
+		    	}
+
 		    }
 	   });
-   $("#wschool").keydown(function(event){ 
-	      if(event.keyCode==13){ 	    	
+   $("#wschool").keydown(function(event){
+	      if(event.keyCode==13){
 		    		$("#personClass").focus();
-		    		
-		    	
+
+
 		    }
 	   });
-   $("#personClass").keydown(function(event){ 
-	      if(event.keyCode==13){ 	    	
+   $("#personClass").keydown(function(event){
+	      if(event.keyCode==13){
 		    		$("#phone").focus();
-	    		
-		    	
+
+
 		    }
 	   });
-   $("#phone").keydown(function(event){ 
-	      if(event.keyCode==13){ 	    	
+   $("#phone").keydown(function(event){
+	      if(event.keyCode==13){
 	    		$("#articleType").focus();
-	    		
+
 		    }
 	   });
-    
+
 });
 
- function JumpToNext(){ 
-	if(event.keyCode==13) 
-	{ 
-	var nextFocusIndex=this.getAttribute("nextFocusIndex"); 
-	document.all[nextFocusIndex].focus(); 
-	} 
-	}  
+ function JumpToNext(){
+	if(event.keyCode==13)
+	{
+	var nextFocusIndex=this.getAttribute("nextFocusIndex");
+	document.all[nextFocusIndex].focus();
+	}
+	}
 
 
-function getCounty(){	
+function getCounty(){
 	  var c=$("#city").val();
 	 /*  $("#is_wschool").hide(); */
 	  $("#county-button span").empty();
@@ -531,19 +529,17 @@ function getCounty(){
 					  $("#county").empty();
 					  $("#school").empty();
 					  $("#is_wschool").hide();
-				}
-				else{
-					
+				} else{
 					var html="";
 					html+="<option value=''>请选择</option>"
-					if(null!=data[0].countyId&&data[0].countyId!=undefined){
+					if(null!=data[0].cityId&&data[0].cityId!=undefined){
 						for(var i=0;i<data.length;i++){
-							html+="<option value='"+data[i].countyId+"'>"+data[i].countyName+"</option>"
-						}	
-					}					
+							html+="<option value='"+data[i].cityId+"'>"+data[i].cityName+"</option>"
+						}
+					}
 					$("#county").append(html);
 				}
-			
+
 			}
 		});
 	}
@@ -556,7 +552,7 @@ function getCounty(){
 			type : "post",
 			url : "${ctx}/img/get/school",
 			data :{
-				countyId:c
+				cityId:c
 			},
 			dataType:"json",
 			success : function(data) {
@@ -575,12 +571,12 @@ function getCounty(){
 					html+="<option value='other'>其他</option>";
 					}
 					$("#school").append(html);
-					
+
 				}
-				}		
+				}
 		});
 	}
-	 function isOther(){	
+	 function isOther(){
 		var s=$("#school").val();
 		if(s=="other"){
 			/* $("#is_wschool").show(); */
@@ -590,20 +586,20 @@ function getCounty(){
 			/* $("#is_wschool").hide(); */
 			$("#wschool").hide();
 		}
-		
-	} 
-	//建立一個可存取到該file的url  
+
+	}
+	//建立一個可存取到該file的url
 	function getObjectURL(file) {
-	  var url = null ;   
-	  // 下面函数执行的效果是一样的，只是需要针对不同的浏览器执行不同的 js 函数而已  
-	  if (window.createObjectURL!=undefined) { // basic  
-	    url = window.createObjectURL(file) ;  
-	  } else if (window.URL!=undefined) { // mozilla(firefox)  
-	    url = window.URL.createObjectURL(file) ;  
-	  } else if (window.webkitURL!=undefined) { // webkit or chrome  
-	    url = window.webkitURL.createObjectURL(file) ;  
-	  }  
-	  return url ;  
-	}  
+	  var url = null ;
+	  // 下面函数执行的效果是一样的，只是需要针对不同的浏览器执行不同的 js 函数而已
+	  if (window.createObjectURL!=undefined) { // basic
+	    url = window.createObjectURL(file) ;
+	  } else if (window.URL!=undefined) { // mozilla(firefox)
+	    url = window.URL.createObjectURL(file) ;
+	  } else if (window.webkitURL!=undefined) { // webkit or chrome
+	    url = window.webkitURL.createObjectURL(file) ;
+	  }
+	  return url ;
+	}
 </script>
 </html>

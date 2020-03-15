@@ -1,9 +1,9 @@
 package com.jasmine.wx.service;
 
+import com.jasmine.wx.entity.PersonInfoEntity;
+
 import java.util.List;
 import java.util.Map;
-
-import com.jasmine.wx.entity.PersonInfoEntity;
 
 public interface PersonService {
 	int deleteByPrimaryKey(Long personId);
@@ -17,7 +17,8 @@ public interface PersonService {
     int updateByPrimaryKeySelective(PersonInfoEntity record);
 
     int updateByPrimaryKey(PersonInfoEntity record);
-    List<PersonInfoEntity> getCity(Map<String, Object> map);
-    List<PersonInfoEntity> getCounty(Map<String, Object> map);
+
+    List<PersonInfoEntity> getPlace(Map<String, Object> map);
+
     List<PersonInfoEntity> getSchool(Map<String, Object> map);
 }

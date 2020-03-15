@@ -1,14 +1,13 @@
 package com.jasmine.wx.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
 import com.jasmine.wx.entity.PersonInfoEntity;
+import com.jasmine.wx.mapper.PersonInfoEntityMapper;
 import com.jasmine.wx.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jasmine.wx.mapper.PersonInfoEntityMapper;
+import java.util.List;
+import java.util.Map;
 
 @Service("personService")
 public class PersonServiceImpl implements PersonService {
@@ -53,21 +52,14 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public List<PersonInfoEntity> getCity(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return personInfoEntityMapper.getCity(map);
-	}
-
-	@Override
-	public List<PersonInfoEntity> getCounty(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return personInfoEntityMapper.getCounty(map);
+	public List<PersonInfoEntity> getPlace(Map<String, Object> map) {
+		return personInfoEntityMapper.getPlace(map);
 	}
 
 	@Override
 	public List<PersonInfoEntity> getSchool(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return personInfoEntityMapper.getSchool(map);
 	}
+
 
 }

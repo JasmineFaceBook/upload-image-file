@@ -31,8 +31,8 @@ public class PersonInfoEntity implements Serializable{
 
     private String cityId;
     private String cityName;
-    private String countyId;
-    private String countyName;
+    private String parentId;
+    private String parentName;
     private String schoolId;
     private String schoolName;
 
@@ -82,23 +82,23 @@ public class PersonInfoEntity implements Serializable{
 		this.cityName = cityName;
 	}
 
-	public String getCountyId() {
-		return countyId;
-	}
+    public String getParentId() {
+        return parentId;
+    }
 
-	public void setCountyId(String countyId) {
-		this.countyId = countyId;
-	}
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
 
-	public String getCountyName() {
-		return countyName;
-	}
+    public String getParentName() {
+        return parentName;
+    }
 
-	public void setCountyName(String countyName) {
-		this.countyName = countyName;
-	}
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
 
-	public String getSchoolId() {
+    public String getSchoolId() {
 		return schoolId;
 	}
 
