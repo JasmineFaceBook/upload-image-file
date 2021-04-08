@@ -3,12 +3,20 @@ package com.jasmine.wx.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class PersonInfoEntity implements Serializable{
+public class PersonInfoEntity extends ObjectString{
     private Long personId;
 
     private String personName;
 
     private String city;
+
+    private int age;
+
+    private String name;
+
+    private String sex;
+
+    private int seniority;
 
     private String county;
 
@@ -41,6 +49,37 @@ public class PersonInfoEntity implements Serializable{
     private String isUpdate;//是否修改已上传的文件
 
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public int getSeniority() {
+        return seniority;
+    }
+
+    public void setSeniority(int seniority) {
+        this.seniority = seniority;
+    }
 
     public String getSfileName() {
 		return sfileName;
