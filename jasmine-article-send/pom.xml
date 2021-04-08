@@ -87,7 +87,7 @@
         <commons.lang3.version>3.1</commons.lang3.version>
         <commons.lang.version>2.6</commons.lang.version>
         <commons.beanutils.version>1.8.3</commons.beanutils.version>
-        <commons.collections.version>3.2.1</commons.collections.version>
+        <commons.collections.version>3.2.2</commons.collections.version>
         <net.sf.json.lib.version>2.4</net.sf.json.lib.version>
         <http.version>4.4.1</http.version>
         <fasterxml.jackson.version>2.1.0</fasterxml.jackson.version>
