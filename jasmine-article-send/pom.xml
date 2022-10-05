@@ -90,7 +90,7 @@
         <commons.collections.version>3.2.1</commons.collections.version>
         <net.sf.json.lib.version>2.4</net.sf.json.lib.version>
         <http.version>4.4.1</http.version>
-        <fasterxml.jackson.version>2.1.0</fasterxml.jackson.version>
+        <fasterxml.jackson.version>2.12.6.1</fasterxml.jackson.version>
         <hessian.version>3.1.3</hessian.version>
     </properties>
   <dependencies>
